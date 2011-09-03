@@ -20,15 +20,6 @@ typedef enum {
  */
 @interface SCArgument : NSObject
 {
-    SCArgumentType _type;
-    SCVariableType _returnType;
-    NSString *_argumentId;
-    NSString *_shortFlag;
-    NSString *_longFlag;
-    NSString *_metaName;
-    BOOL _required;
-    BOOL _variableLength;
-    id _defaultValue;
 }
 
 // Classifies this argument as a positional argument or an argument represented by a flag. For

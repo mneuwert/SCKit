@@ -14,10 +14,6 @@
  */
 @interface SCArgumentParser : NSObject
 {
-    NSString *_processName;
-    NSArray *_arguments;
-    NSString *_helpText;
-    NSArray *_argumentDefinitions;
 }
 
 // The name of the process. Defaults to the one used to launch the current process.
