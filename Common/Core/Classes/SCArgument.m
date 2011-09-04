@@ -20,8 +20,7 @@
 @synthesize type = _type;
 @synthesize variableLength = _variableLength;
 
-#pragma mark -
-#pragma mark Object Lifecycle
+#pragma mark - Object Lifecycle
 
 - (id)init
 {

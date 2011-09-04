@@ -9,6 +9,7 @@
 #import "SCArgumentParser.h"
 
 #import "NSString+SCAdditions.h"
+#import "SCArgument.h"
 #import "SCConstants.h"
 
 @implementation SCArgumentParser
@@ -18,8 +19,7 @@
 @synthesize helpText = _helpText;
 @synthesize processName = _processName;
 
-#pragma mark -
-#pragma mark Object Lifecycle
+#pragma mark - Object Lifecycle
 
 - (id)init
 {
@@ -42,8 +42,7 @@
     [super dealloc];
 }
 
-#pragma mark -
-#pragma mark Accessors
+#pragma mark - Accessors
 
 - (void)setArgumentDefinitions:(NSArray *)argumentDefinitions
 {
@@ -87,8 +86,7 @@
     _argumentDefinitions = [argumentDefinitions copy];
 }
 
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - Public Methods
 
 - (BOOL)parseArgumentsIntoResults:(NSDictionary **)results error:(NSError **)error
 {

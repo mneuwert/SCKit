@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SCArgument.h"
 
 /**
  * This class parses command-line arguments into a dictionary of name-value pair results.
