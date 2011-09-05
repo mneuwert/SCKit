@@ -9,6 +9,7 @@
 #import "SCModalPickerView.h"
 
 @interface SCModalPickerView ()
+@property (nonatomic, readwrite, retain) UIWindow *window;
 @property (nonatomic, readwrite, retain) UIToolbar *toolbar;
 @property (nonatomic, retain) UIButton *dimmingButton;
 @property (nonatomic, assign) UIWindow *previousWindow;
@@ -22,23 +23,14 @@
 @synthesize pickerView = _pickerView;
 @synthesize previousWindow = _previousWindow;
 @synthesize toolbar = _toolbar;
+@synthesize window = _window;
 
 #pragma mark - View Lifecycle
 
 - (id)init
 {
-    if ((self = [self initWithFrame:[[UIScreen mainScreen] bounds]]))
+    if ((self = [self initWithFrame:CGRectZero]))
     {
-    }
-    
-    return self;
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    if ((self = [super initWithFrame:frame]))
-    {
-        [self setWindowLevel:UIWindowLevelStatusBar + 1.0];
     }
     
     return self;
@@ -54,6 +46,17 @@
 
 #pragma mark - Accessors
 
+- (UIWindow *)window
+{
+    if (_window == nil)
+    {
+        _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        [_window setWindowLevel:UIWindowLevelStatusBar + 1.0];
+    }
+    
+    return _window;
+}
+
 - (UIButton *)dimmingButton
 {
     if (_dimmingButton == nil)
@@ -62,7 +65,6 @@
         [_dimmingButton setBackgroundColor:[UIColor blackColor]];
         [_dimmingButton setAlpha:0.0];
         [_dimmingButton setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-        [_dimmingButton setFrame:[self bounds]];
     }
     
     return _dimmingButton;
@@ -100,17 +102,17 @@
 
 - (void)show
 {
-    // Add ourself to the thread dictionary to ensure we are retained by something. This allows
-    // the caller to release us after displaying us. Otherwise, the system thinks that it should
-    // dealloc the window even though it is made key and visible.
-    [[[NSThread currentThread] threadDictionary] setObject:self forKey:@"SCModalPickerView"];
-
     // Remember the previous key window
     [self setPreviousWindow:[[UIApplication sharedApplication] keyWindow]];
+    
+    // Retrieve the window in which we are going to display ourself
+    UIWindow *window = [self window];
+    [window addSubview:self];
 
     // Dimming Button
     UIButton *dimmingButton = [self dimmingButton];
-    [self addSubview:dimmingButton];
+    [dimmingButton setFrame:[window bounds]];
+    [window insertSubview:dimmingButton belowSubview:self];
 
     // Toolbar
     UIToolbar *toolbar = [self toolbar];
@@ -119,25 +121,34 @@
     // Picker View
     UIPickerView *pickerView = [self pickerView];
     NSAssert(pickerView != nil, @"A UIPickerView must be set before displaying the SCModalPickerView.");
-    [pickerView setFrame:CGRectMake(0.0, CGRectGetMaxY(toolbar.frame), self.bounds.size.width, pickerView.bounds.size.height)];
     [self addSubview:pickerView];
+    
+    // Set our frame and layout our subviews
+    [self setFrame:CGRectMake(0.0, [window bounds].size.height, [window bounds].size.width, [pickerView bounds].size.height + [toolbar bounds].size.height)];
+    [self layoutIfNeeded];
 
     // Make the window visible
-    [self makeKeyAndVisible];
+    [window makeKeyAndVisible];
 
     // Perform the animation
     [UIView animateWithDuration:0.3 animations:^{
-        CGFloat yOffset = CGRectGetMaxY(pickerView.frame) - self.bounds.size.height;
         [_dimmingButton setAlpha:0.4];
         
-        CGRect rect = [_pickerView frame];
-        rect.origin.y -= yOffset;
-        [_pickerView setFrame:rect];
-        
-        rect = [_toolbar frame];
-        rect.origin.y -= yOffset;
-        [_toolbar setFrame:rect];
+        CGRect rect = [self frame];
+        rect.origin.y -= [self bounds].size.height;
+        [self setFrame:rect];
     }];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    if (_toolbar && _pickerView)
+    {
+        [_toolbar setFrame:CGRectMake(0.0, 0.0, self.bounds.size.width, _toolbar.bounds.size.height)];
+        [_pickerView setFrame:CGRectMake(0.0, CGRectGetMaxY(_toolbar.frame), self.bounds.size.width, _pickerView.bounds.size.height)];
+    }
 }
 
 - (void)cancel:(id)sender
@@ -159,23 +170,17 @@
     }
 
     // Animate out
-    __block NSMutableDictionary *threadDict = [[NSThread currentThread] threadDictionary];
     [UIView animateWithDuration:0.3
                      animations:^{
-                         CGFloat yOffset = _pickerView.bounds.size.height + _toolbar.bounds.size.height;
                          [_dimmingButton setAlpha:0.0];
 
-                         CGRect rect = [_pickerView frame];
-                         rect.origin.y += yOffset;
-                         [_pickerView setFrame:rect];
-                         
-                         rect = [_toolbar frame];
-                         rect.origin.y += yOffset;
-                         [_toolbar setFrame:rect];
+                         CGRect rect = [self frame];
+                         rect.origin.y += [self bounds].size.height;
+                         [self setFrame:rect];
                      }
                      completion:^(BOOL finished) {
                          [_previousWindow makeKeyAndVisible];
-                         [threadDict removeObjectForKey:@"SCModalPickerView"];
+                         [self setWindow:nil];  // Break the retain loop and allow both self and the UIWindow to be reclaimed.
                      }];
 }
 

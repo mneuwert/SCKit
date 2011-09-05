@@ -15,13 +15,16 @@ typedef enum {
 
 typedef void (^SCModalPickerViewCompletionHandler)(SCModalPickerViewResult result);
 
-@interface SCModalPickerView : UIWindow
+@interface SCModalPickerView : UIView
 {
 }
 
 // The UIPickerView to display to the user. This must be set before the caller attempts to show
 // the SCModalPickerView.
 @property (nonatomic, retain) UIPickerView *pickerView;
+
+// The window im which the UIPickerView and UIToolbar will be displayed.
+@property (nonatomic, readonly, retain) UIWindow *window;
 
 // This toolbar is displayed above the UIPickerView. It contains three UIToolbarItems:
 // 1) A cancel button.
