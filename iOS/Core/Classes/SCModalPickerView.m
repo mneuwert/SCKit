@@ -8,6 +8,8 @@
 
 #import "SCModalPickerView.h"
 
+#import "SCConstants.h"
+
 @interface SCModalPickerView ()
 @property (nonatomic, readwrite, retain) UIWindow *window;
 @property (nonatomic, readwrite, retain) UIToolbar *toolbar;
@@ -98,6 +100,20 @@
     return _toolbar;
 }
 
+- (void)setPickerView:(id)pickerView
+{
+    if (pickerView != nil &&
+        ![pickerView isKindOfClass:[UIPickerView class]] &&
+        ![pickerView isKindOfClass:[UIDatePicker class]])
+    {
+        [NSException raise:SCGenericException format:@"%@ is not a UIPickerView or a UIDatePicker.", pickerView];
+    }
+    
+    [pickerView retain];
+    [_pickerView release];
+    _pickerView = pickerView;
+}
+
 #pragma mark - Showing and Hiding
 
 - (void)show
@@ -119,7 +135,7 @@
     [self addSubview:toolbar];
 
     // Picker View
-    UIPickerView *pickerView = [self pickerView];
+    UIView *pickerView = [self pickerView];
     NSAssert(pickerView != nil, @"A UIPickerView must be set before displaying the SCModalPickerView.");
     [self addSubview:pickerView];
     

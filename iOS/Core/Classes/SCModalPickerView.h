@@ -20,8 +20,8 @@ typedef void (^SCModalPickerViewCompletionHandler)(SCModalPickerViewResult resul
 }
 
 // The UIPickerView to display to the user. This must be set before the caller attempts to show
-// the SCModalPickerView.
-@property (nonatomic, retain) UIPickerView *pickerView;
+// the SCModalPickerView. This should be a UIPickerView or a UIDatePicker.
+@property (nonatomic, retain) UIView *pickerView;
 
 // The window im which the UIPickerView and UIToolbar will be displayed.
 @property (nonatomic, readonly, retain) UIWindow *window;
