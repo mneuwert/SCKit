@@ -61,6 +61,12 @@
 
 - (UIButton *)dimmingButton
 {
+    // I use a UIButton here instead of a UIView for a couple reasons:
+    // 1. I wanted to make it easy for people to modify this code to allow tapping on the dimmed
+    //    background to be another way to dismiss the modal picker view.
+    // 2. I wanted to be certain that touches would not get passed through this window to the old
+    //    (non-key) window behind it. Currently, they aren't, but it seems like the kind of thing
+    //    that Apple could change in a major iOS release.
     if (_dimmingButton == nil)
     {
         _dimmingButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
