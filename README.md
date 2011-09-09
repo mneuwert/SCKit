@@ -7,4 +7,4 @@ SCKit is a simple, unfocused Objective-C library. It is designed to contain usef
 
 Usage
 -----
-SCKit is not designed to be compiled into a static library that can be shipped with your application. Instead, you should drag any source files that you wish to use directly into your project.
+To use SCKit, add this repository as a submodule to your own and drag any files you wish to use into your Xcode project. Compiling SCKit as a static library to ship with your application is also possible, but is an exercise left to the user.
