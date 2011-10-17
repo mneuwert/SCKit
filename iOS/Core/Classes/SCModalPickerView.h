@@ -15,6 +15,10 @@ typedef enum {
 
 typedef void (^SCModalPickerViewCompletionHandler)(SCModalPickerViewResult result);
 
+// A class to handle the display of a modal UIPickerView or UIDatePicker. This code does not
+// currently support device rotations, however that should be fairly easy to add by putting all
+// of the views into a UIViewController and then displaying that UIViewController as the new
+// window's root view controller.
 @interface SCModalPickerView : UIView
 {
 }
@@ -23,7 +27,7 @@ typedef void (^SCModalPickerViewCompletionHandler)(SCModalPickerViewResult resul
 // the SCModalPickerView. This should be a UIPickerView or a UIDatePicker.
 @property (nonatomic, retain) UIView *pickerView;
 
-// The window im which the UIPickerView and UIToolbar will be displayed.
+// The window in which the UIPickerView and UIToolbar will be displayed.
 @property (nonatomic, readonly, retain) UIWindow *window;
 
 // This toolbar is displayed above the UIPickerView. It contains three UIToolbarItems:
@@ -33,7 +37,7 @@ typedef void (^SCModalPickerViewCompletionHandler)(SCModalPickerViewResult resul
 // You may reorder these buttons or add your own before calling show on the SCModalPickerView.
 @property (nonatomic, readonly, retain) UIToolbar *toolbar;
 
-// A block to execute open dismissing the SCModalPickerView.
+// A block to execute upon dismissing the SCModalPickerView.
 @property (nonatomic, copy) SCModalPickerViewCompletionHandler completionHandler;
 
 // Display the SCModalPickerView. Once it has been displayed it will be retained as an active,
