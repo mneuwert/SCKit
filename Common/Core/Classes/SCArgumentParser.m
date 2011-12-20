@@ -8,7 +8,6 @@
 
 #import "SCArgumentParser.h"
 
-#import "NSString+SCAdditions.h"
 #import "SCArgument.h"
 #import "SCConstants.h"
 
@@ -113,7 +112,7 @@
         NSMutableArray *valueArray = [[NSMutableArray alloc] init];
         SCArgument *definition = nil;
         NSString *option = [_arguments objectAtIndex:i];
-        if ([option sc_startsWithString:@"--"])
+        if ([option hasPrefix:@"--"])
         {
             NSString *flag = [option substringFromIndex:2];
             NSUInteger index = [flag rangeOfString:@"="].location;
@@ -137,7 +136,7 @@
                 }
             }
         }
-        else if ([option sc_startsWithString:@"-"])
+        else if ([option hasPrefix:@"-"])
         {
             NSString *flag = [option substringFromIndex:1];
             for (SCArgument *aDefinition in definitions)
@@ -153,7 +152,7 @@
             {
                 i += 1;
                 value = [_arguments objectAtIndex:i];
-                if ([value sc_startsWithString:@"-"])
+                if ([value hasPrefix:@"-"])
                 {
                     value = nil;
                 }
@@ -233,7 +232,7 @@
             {
                 pwd = @"~/";
             }
-            if (![value sc_startsWithString:@"/"])
+            if (![value hasPrefix:@"/"])
             {
                 value = [pwd stringByAppendingPathComponent:value];
                 value = [value stringByStandardizingPath];
