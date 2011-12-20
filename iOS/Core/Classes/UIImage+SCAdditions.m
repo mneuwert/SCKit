@@ -77,7 +77,7 @@
 - (UIImage *)sc_imageByRotatingToProperOrientationAndScalingToMaximumSideLength:(CGFloat)maxSideLength
 {
     CGImageRef imgRef = [self CGImage];
-    CGSize imageSize = [self size];
+    CGSize imageSize = CGSizeMake(CGImageGetWidth(imgRef), CGImageGetHeight(imgRef));
 
     // Determine the size of the new image given the maximum side length
     CGRect bounds = CGRectMake(0.0, 0.0, imageSize.width, imageSize.height);
