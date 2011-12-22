@@ -15,19 +15,18 @@ typedef enum {
 
 typedef void (^SCModalPickerViewCompletionHandler)(SCModalPickerViewResult result);
 
-// A class to handle the display of a modal UIPickerView or UIDatePicker. This code does not
-// currently support device rotations, however that should be fairly easy to add by putting all
-// of the views into a UIViewController and then displaying that UIViewController as the new
-// window's root view controller.
+// A class to handle the display of a modal UIPickerView or UIDatePicker.
 @interface SCModalPickerView : UIView
-{
-}
 
 // The UIPickerView to display to the user. This must be set before the caller attempts to show
-// the SCModalPickerView. This should be a UIPickerView or a UIDatePicker.
+// the SCModalPickerView. This should be a UIPickerView or a UIDatePicker. It's too bad that these
+// two classes do not share a common base class. Attempting to set something other than a
+// UIPickerView or UIDatePicker will result in an exception.
 @property (nonatomic, retain) UIView *pickerView;
 
-// The window in which the UIPickerView and UIToolbar will be displayed.
+// The main reason for using a UIWindow in this class is to dim the status bar. We would also use
+// a similar tactic if we wanted to create a custom alert view, or if we wanted to do something that
+// couldn't piggyback on top of UIResponder's inputView and inputAccessoryView.
 @property (nonatomic, readonly, retain) UIWindow *window;
 
 // This toolbar is displayed above the UIPickerView. It contains three UIToolbarItems:

@@ -27,3 +27,6 @@ typedef enum {
 
 extern NSString * const SCErrorDomain;
 extern NSString * const SCGenericException;
+
+#define SCBarHeightStandard 44.0
+#define SCBarHeightLandscapePhone 32.0

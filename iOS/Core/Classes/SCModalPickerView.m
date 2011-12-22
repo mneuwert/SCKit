@@ -8,6 +8,7 @@
 
 #import "SCModalPickerView.h"
 
+#import "SCAnimation.h"
 #import "SCConstants.h"
 
 @interface SCModalPickerView ()
@@ -15,6 +16,7 @@
 @property (nonatomic, readwrite, retain) UIToolbar *toolbar;
 @property (nonatomic, retain) UIButton *dimmingButton;
 @property (nonatomic, assign) UIWindow *previousWindow;
+@property (nonatomic, retain) UITextField *textField;
 - (void)hideWithResult:(SCModalPickerViewResult)result;
 @end
 
@@ -24,6 +26,7 @@
 @synthesize dimmingButton = _dimmingButton;
 @synthesize pickerView = _pickerView;
 @synthesize previousWindow = _previousWindow;
+@synthesize textField = _textField;
 @synthesize toolbar = _toolbar;
 @synthesize window = _window;
 
@@ -40,9 +43,13 @@
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [_completionHandler release];
     [_dimmingButton release];
     [_pickerView release];
+    [_textField release];
     [_toolbar release];
+    [_window release];
     [super dealloc];
 }
 
@@ -54,6 +61,7 @@
     {
         _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         [_window setWindowLevel:UIWindowLevelStatusBar + 1.0];
+        [_window setBackgroundColor:[UIColor clearColor]];
     }
     
     return _window;
@@ -83,9 +91,9 @@
     if (_toolbar == nil)
     {
         // Toolbar
-        _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0, self.bounds.size.height, self.bounds.size.width, 44.0)];
+        _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0, 0.0, [self bounds].size.width, SCBarHeightStandard)];
         [_toolbar setBarStyle:UIBarStyleBlackTranslucent];
-        [_toolbar setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin];
+        [_toolbar setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         
         // Toolbar Items
         UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
@@ -118,6 +126,22 @@
     [pickerView retain];
     [_pickerView release];
     _pickerView = pickerView;
+    
+    // Set the autoresizing mask to ensure that it resizes well on device rotation.
+    [_pickerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+}
+
+- (UITextField *)textField
+{
+    if (_textField == nil)
+    {
+        _textField = [[UITextField alloc] initWithFrame:CGRectZero];
+        [_textField setInputView:[self pickerView]];
+        [_textField setInputAccessoryView:[self toolbar]];
+        [_textField setHidden:YES];
+    }
+    
+    return _textField;
 }
 
 #pragma mark - Showing and Hiding
@@ -135,42 +159,20 @@
     UIButton *dimmingButton = [self dimmingButton];
     [dimmingButton setFrame:[window bounds]];
     [window insertSubview:dimmingButton belowSubview:self];
-
-    // Toolbar
-    UIToolbar *toolbar = [self toolbar];
-    [self addSubview:toolbar];
-
-    // Picker View
-    UIView *pickerView = [self pickerView];
-    NSAssert(pickerView != nil, @"A UIPickerView must be set before displaying the SCModalPickerView.");
-    [self addSubview:pickerView];
     
-    // Set our frame and layout our subviews
-    [self setFrame:CGRectMake(0.0, [window bounds].size.height, [window bounds].size.width, [pickerView bounds].size.height + [toolbar bounds].size.height)];
-    [self layoutIfNeeded];
-
     // Make the window visible
     [window makeKeyAndVisible];
-
-    // Perform the animation
-    [UIView animateWithDuration:0.3 animations:^{
-        [_dimmingButton setAlpha:0.4];
-        
-        CGRect rect = [self frame];
-        rect.origin.y -= [self bounds].size.height;
-        [self setFrame:rect];
-    }];
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
     
-    if (_toolbar && _pickerView)
-    {
-        [_toolbar setFrame:CGRectMake(0.0, 0.0, self.bounds.size.width, _toolbar.bounds.size.height)];
-        [_pickerView setFrame:CGRectMake(0.0, CGRectGetMaxY(_toolbar.frame), self.bounds.size.width, _pickerView.bounds.size.height)];
-    }
+    // Listen to keyboard events
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    // Add the hidden text field and make it first responder. This will show the picker view and the
+    // toolbar.
+    [self addSubview:[self textField]];
+    [[self textField] becomeFirstResponder];
 }
 
 - (void)cancel:(id)sender
@@ -190,15 +192,58 @@
     {
         _completionHandler(result);
     }
+    
+    // Listen to keyboard events
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 
-    // Animate out
-    [UIView animateWithDuration:0.3
+    [[self textField] resignFirstResponder];
+}
+
+#pragma mark - Notifications
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    // Stop observing this notification.
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    
+    NSTimeInterval duration;
+    [[[notification userInfo] valueForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&duration];
+    
+    UIViewAnimationCurve curve;
+    [[[notification userInfo] valueForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&curve];
+    
+    [UIView animateWithDuration:duration
+                          delay:0.0
+                        options:SCViewAnimationOptionsForViewAnimationCurve(curve)
+                     animations:^{
+                         [_dimmingButton setAlpha:0.4];
+                     }
+                     completion:nil];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    // Stop observing this notification.
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
+    
+    NSTimeInterval duration;
+    [[[notification userInfo] valueForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&duration];
+    
+    UIViewAnimationCurve curve;
+    [[[notification userInfo] valueForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&curve];
+    
+    [UIView animateWithDuration:duration
+                          delay:0.0
+                        options:SCViewAnimationOptionsForViewAnimationCurve(curve)
                      animations:^{
                          [_dimmingButton setAlpha:0.0];
-
-                         CGRect rect = [self frame];
-                         rect.origin.y += [self bounds].size.height;
-                         [self setFrame:rect];
                      }
                      completion:^(BOOL finished) {
                          [_previousWindow makeKeyAndVisible];
