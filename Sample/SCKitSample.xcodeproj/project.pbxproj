@@ -1,0 +1,389 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		63BBCF5614A392870038499D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63BBCF5514A392870038499D /* UIKit.framework */; };
+		63BBCF5814A392870038499D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63BBCF5714A392870038499D /* Foundation.framework */; };
+		63BBCF5A14A392870038499D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63BBCF5914A392870038499D /* CoreGraphics.framework */; };
+		63BBCF6014A392870038499D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 63BBCF5E14A392870038499D /* InfoPlist.strings */; };
+		63BBCF6214A392870038499D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF6114A392870038499D /* main.m */; };
+		63BBCF6614A392870038499D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF6514A392870038499D /* AppDelegate.m */; };
+		63BBCF7314A393D10038499D /* RootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF7214A393D10038499D /* RootTableViewController.m */; };
+		63BBCF7614A396AB0038499D /* ExampleModalPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF7514A396AB0038499D /* ExampleModalPickerViewController.m */; };
+		63BBCF9214A397180038499D /* SCArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF8014A397180038499D /* SCArgument.m */; };
+		63BBCF9314A397180038499D /* SCArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF8214A397180038499D /* SCArgumentParser.m */; };
+		63BBCF9414A397180038499D /* SCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF8414A397180038499D /* SCConstants.m */; };
+		63BBCF9514A397180038499D /* SCPathUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF8614A397180038499D /* SCPathUtils.m */; };
+		63BBCF9614A397180038499D /* SCModalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF8B14A397180038499D /* SCModalPickerView.m */; };
+		63BBCF9714A397180038499D /* SCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF8D14A397180038499D /* SCViewController.m */; };
+		63BBCF9814A397180038499D /* UIImage+SCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF8F14A397180038499D /* UIImage+SCAdditions.m */; };
+		63BBCF9914A397180038499D /* UIView+SCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF9114A397180038499D /* UIView+SCAdditions.m */; };
+		63BBCFA214A3A79A0038499D /* SCAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCFA114A3A79A0038499D /* SCAnimation.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		63BBCF5114A392870038499D /* SCKitSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCKitSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		63BBCF5514A392870038499D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		63BBCF5714A392870038499D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		63BBCF5914A392870038499D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		63BBCF5D14A392870038499D /* SCKitSample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SCKitSample-Info.plist"; sourceTree = "<group>"; };
+		63BBCF5F14A392870038499D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		63BBCF6114A392870038499D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		63BBCF6314A392870038499D /* SCKitSample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SCKitSample-Prefix.pch"; sourceTree = "<group>"; };
+		63BBCF6414A392870038499D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		63BBCF6514A392870038499D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		63BBCF7114A393D10038499D /* RootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTableViewController.h; sourceTree = "<group>"; };
+		63BBCF7214A393D10038499D /* RootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTableViewController.m; sourceTree = "<group>"; };
+		63BBCF7414A396AB0038499D /* ExampleModalPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleModalPickerViewController.h; sourceTree = "<group>"; };
+		63BBCF7514A396AB0038499D /* ExampleModalPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleModalPickerViewController.m; sourceTree = "<group>"; };
+		63BBCF7F14A397180038499D /* SCArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCArgument.h; sourceTree = "<group>"; };
+		63BBCF8014A397180038499D /* SCArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCArgument.m; sourceTree = "<group>"; };
+		63BBCF8114A397180038499D /* SCArgumentParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCArgumentParser.h; sourceTree = "<group>"; };
+		63BBCF8214A397180038499D /* SCArgumentParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCArgumentParser.m; sourceTree = "<group>"; };
+		63BBCF8314A397180038499D /* SCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCConstants.h; sourceTree = "<group>"; };
+		63BBCF8414A397180038499D /* SCConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCConstants.m; sourceTree = "<group>"; };
+		63BBCF8514A397180038499D /* SCPathUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPathUtils.h; sourceTree = "<group>"; };
+		63BBCF8614A397180038499D /* SCPathUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPathUtils.m; sourceTree = "<group>"; };
+		63BBCF8A14A397180038499D /* SCModalPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCModalPickerView.h; sourceTree = "<group>"; };
+		63BBCF8B14A397180038499D /* SCModalPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCModalPickerView.m; sourceTree = "<group>"; };
+		63BBCF8C14A397180038499D /* SCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCViewController.h; sourceTree = "<group>"; };
+		63BBCF8D14A397180038499D /* SCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCViewController.m; sourceTree = "<group>"; };
+		63BBCF8E14A397180038499D /* UIImage+SCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SCAdditions.h"; sourceTree = "<group>"; };
+		63BBCF8F14A397180038499D /* UIImage+SCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SCAdditions.m"; sourceTree = "<group>"; };
+		63BBCF9014A397180038499D /* UIView+SCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SCAdditions.h"; sourceTree = "<group>"; };
+		63BBCF9114A397180038499D /* UIView+SCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SCAdditions.m"; sourceTree = "<group>"; };
+		63BBCFA014A3A79A0038499D /* SCAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCAnimation.h; sourceTree = "<group>"; };
+		63BBCFA114A3A79A0038499D /* SCAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCAnimation.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		63BBCF4E14A392870038499D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63BBCF5614A392870038499D /* UIKit.framework in Frameworks */,
+				63BBCF5814A392870038499D /* Foundation.framework in Frameworks */,
+				63BBCF5A14A392870038499D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		63BBCF4614A392870038499D = {
+			isa = PBXGroup;
+			children = (
+				63BBCF7714A396D20038499D /* SCKit */,
+				63BBCF5B14A392870038499D /* SCKitSample */,
+				63BBCF5414A392870038499D /* Frameworks */,
+				63BBCF5214A392870038499D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		63BBCF5214A392870038499D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				63BBCF5114A392870038499D /* SCKitSample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		63BBCF5414A392870038499D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				63BBCF5914A392870038499D /* CoreGraphics.framework */,
+				63BBCF5714A392870038499D /* Foundation.framework */,
+				63BBCF5514A392870038499D /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		63BBCF5B14A392870038499D /* SCKitSample */ = {
+			isa = PBXGroup;
+			children = (
+				63BBCF6414A392870038499D /* AppDelegate.h */,
+				63BBCF6514A392870038499D /* AppDelegate.m */,
+				63BBCF7114A393D10038499D /* RootTableViewController.h */,
+				63BBCF7214A393D10038499D /* RootTableViewController.m */,
+				63BBCF7414A396AB0038499D /* ExampleModalPickerViewController.h */,
+				63BBCF7514A396AB0038499D /* ExampleModalPickerViewController.m */,
+				63BBCF5C14A392870038499D /* Supporting Files */,
+			);
+			path = SCKitSample;
+			sourceTree = "<group>";
+		};
+		63BBCF5C14A392870038499D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				63BBCF5D14A392870038499D /* SCKitSample-Info.plist */,
+				63BBCF5E14A392870038499D /* InfoPlist.strings */,
+				63BBCF6114A392870038499D /* main.m */,
+				63BBCF6314A392870038499D /* SCKitSample-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		63BBCF7714A396D20038499D /* SCKit */ = {
+			isa = PBXGroup;
+			children = (
+				63BBCF7C14A397180038499D /* Common */,
+				63BBCF8714A397180038499D /* iOS */,
+			);
+			name = SCKit;
+			sourceTree = "<group>";
+		};
+		63BBCF7C14A397180038499D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				63BBCF7D14A397180038499D /* Core */,
+			);
+			name = Common;
+			path = ../Common;
+			sourceTree = "<group>";
+		};
+		63BBCF7D14A397180038499D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				63BBCF7E14A397180038499D /* Classes */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		63BBCF7E14A397180038499D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				63BBCF7F14A397180038499D /* SCArgument.h */,
+				63BBCF8014A397180038499D /* SCArgument.m */,
+				63BBCF8114A397180038499D /* SCArgumentParser.h */,
+				63BBCF8214A397180038499D /* SCArgumentParser.m */,
+				63BBCF8314A397180038499D /* SCConstants.h */,
+				63BBCF8414A397180038499D /* SCConstants.m */,
+				63BBCF8514A397180038499D /* SCPathUtils.h */,
+				63BBCF8614A397180038499D /* SCPathUtils.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		63BBCF8714A397180038499D /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				63BBCF8814A397180038499D /* Core */,
+			);
+			name = iOS;
+			path = ../iOS;
+			sourceTree = "<group>";
+		};
+		63BBCF8814A397180038499D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				63BBCF8914A397180038499D /* Classes */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		63BBCF8914A397180038499D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				63BBCFA014A3A79A0038499D /* SCAnimation.h */,
+				63BBCFA114A3A79A0038499D /* SCAnimation.m */,
+				63BBCF8A14A397180038499D /* SCModalPickerView.h */,
+				63BBCF8B14A397180038499D /* SCModalPickerView.m */,
+				63BBCF8C14A397180038499D /* SCViewController.h */,
+				63BBCF8D14A397180038499D /* SCViewController.m */,
+				63BBCF8E14A397180038499D /* UIImage+SCAdditions.h */,
+				63BBCF8F14A397180038499D /* UIImage+SCAdditions.m */,
+				63BBCF9014A397180038499D /* UIView+SCAdditions.h */,
+				63BBCF9114A397180038499D /* UIView+SCAdditions.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		63BBCF5014A392870038499D /* SCKitSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63BBCF6914A392870038499D /* Build configuration list for PBXNativeTarget "SCKitSample" */;
+			buildPhases = (
+				63BBCF4D14A392870038499D /* Sources */,
+				63BBCF4E14A392870038499D /* Frameworks */,
+				63BBCF4F14A392870038499D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SCKitSample;
+			productName = SCKitSample;
+			productReference = 63BBCF5114A392870038499D /* SCKitSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		63BBCF4814A392870038499D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Sebastian Celis";
+			};
+			buildConfigurationList = 63BBCF4B14A392870038499D /* Build configuration list for PBXProject "SCKitSample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 63BBCF4614A392870038499D;
+			productRefGroup = 63BBCF5214A392870038499D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				63BBCF5014A392870038499D /* SCKitSample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		63BBCF4F14A392870038499D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63BBCF6014A392870038499D /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		63BBCF4D14A392870038499D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63BBCF6214A392870038499D /* main.m in Sources */,
+				63BBCF6614A392870038499D /* AppDelegate.m in Sources */,
+				63BBCF7314A393D10038499D /* RootTableViewController.m in Sources */,
+				63BBCF7614A396AB0038499D /* ExampleModalPickerViewController.m in Sources */,
+				63BBCF9214A397180038499D /* SCArgument.m in Sources */,
+				63BBCF9314A397180038499D /* SCArgumentParser.m in Sources */,
+				63BBCF9414A397180038499D /* SCConstants.m in Sources */,
+				63BBCF9514A397180038499D /* SCPathUtils.m in Sources */,
+				63BBCF9614A397180038499D /* SCModalPickerView.m in Sources */,
+				63BBCF9714A397180038499D /* SCViewController.m in Sources */,
+				63BBCF9814A397180038499D /* UIImage+SCAdditions.m in Sources */,
+				63BBCF9914A397180038499D /* UIView+SCAdditions.m in Sources */,
+				63BBCFA214A3A79A0038499D /* SCAnimation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		63BBCF5E14A392870038499D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				63BBCF5F14A392870038499D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		63BBCF6714A392870038499D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		63BBCF6814A392870038499D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		63BBCF6A14A392870038499D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SCKitSample/SCKitSample-Prefix.pch";
+				INFOPLIST_FILE = "SCKitSample/SCKitSample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		63BBCF6B14A392870038499D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SCKitSample/SCKitSample-Prefix.pch";
+				INFOPLIST_FILE = "SCKitSample/SCKitSample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		63BBCF4B14A392870038499D /* Build configuration list for PBXProject "SCKitSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63BBCF6714A392870038499D /* Debug */,
+				63BBCF6814A392870038499D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63BBCF6914A392870038499D /* Build configuration list for PBXNativeTarget "SCKitSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63BBCF6A14A392870038499D /* Debug */,
+				63BBCF6B14A392870038499D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 63BBCF4814A392870038499D /* Project object */;
+}
