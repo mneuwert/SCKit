@@ -12,10 +12,8 @@
 #import "SCConstants.h"
 
 @interface SCModalPickerView ()
-@property (nonatomic, readwrite, retain) UIWindow *window;
 @property (nonatomic, readwrite, retain) UIToolbar *toolbar;
 @property (nonatomic, retain) UIButton *dimmingButton;
-@property (nonatomic, assign) UIWindow *previousWindow;
 @property (nonatomic, retain) UITextField *textField;
 - (void)hideWithResult:(SCModalPickerViewResult)result;
 @end
@@ -25,10 +23,8 @@
 @synthesize completionHandler = _completionHandler;
 @synthesize dimmingButton = _dimmingButton;
 @synthesize pickerView = _pickerView;
-@synthesize previousWindow = _previousWindow;
 @synthesize textField = _textField;
 @synthesize toolbar = _toolbar;
-@synthesize window = _window;
 
 #pragma mark - View Lifecycle
 
@@ -49,23 +45,10 @@
     [_pickerView release];
     [_textField release];
     [_toolbar release];
-    [_window release];
     [super dealloc];
 }
 
 #pragma mark - Accessors
-
-- (UIWindow *)window
-{
-    if (_window == nil)
-    {
-        _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        [_window setWindowLevel:UIWindowLevelStatusBar + 1.0];
-        [_window setBackgroundColor:[UIColor clearColor]];
-    }
-    
-    return _window;
-}
 
 - (UIButton *)dimmingButton
 {
@@ -148,20 +131,13 @@
 
 - (void)show
 {
-    // Remember the previous key window
-    [self setPreviousWindow:[[UIApplication sharedApplication] keyWindow]];
-    
-    // Retrieve the window in which we are going to display ourself
-    UIWindow *window = [self window];
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
     [window addSubview:self];
-
+    
     // Dimming Button
     UIButton *dimmingButton = [self dimmingButton];
     [dimmingButton setFrame:[window bounds]];
     [window insertSubview:dimmingButton belowSubview:self];
-    
-    // Make the window visible
-    [window makeKeyAndVisible];
     
     // Listen to keyboard events
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -245,10 +221,7 @@
                      animations:^{
                          [_dimmingButton setAlpha:0.0];
                      }
-                     completion:^(BOOL finished) {
-                         [_previousWindow makeKeyAndVisible];
-                         [self setWindow:nil];  // Break the retain loop and allow both self and the UIWindow to be reclaimed.
-                     }];
+                     completion:nil];
 }
 
 @end
