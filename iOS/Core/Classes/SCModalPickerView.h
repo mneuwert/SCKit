@@ -24,11 +24,6 @@ typedef void (^SCModalPickerViewCompletionHandler)(SCModalPickerViewResult resul
 // UIPickerView or UIDatePicker will result in an exception.
 @property (nonatomic, retain) UIView *pickerView;
 
-// The main reason for using a UIWindow in this class is to dim the status bar. We would also use
-// a similar tactic if we wanted to create a custom alert view, or if we wanted to do something that
-// couldn't piggyback on top of UIResponder's inputView and inputAccessoryView.
-@property (nonatomic, readonly, retain) UIWindow *window;
-
 // This toolbar is displayed above the UIPickerView. It contains three UIToolbarItems:
 // 1) A cancel button.
 // 2) Flexible space.
